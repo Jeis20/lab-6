@@ -1,12 +1,19 @@
 'use strict';
 
+// array for hours open, displayed on header
 var hoursOpen = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
-
+// array for store lcations
 var storeLocations = [];
+// array for table footer and totals
 var footerTotals = [];
+// Pat Table is the name of the table
+var patTable = document.getElementById('pat-table');
 
-var patTable = document.getElementById('patTable');
+var updateForm = document.getElementById('update-form');
 
+var cookieForm = document.getElementById('cookie-form');
+
+// Constructor function
 function Bakery(name, minHourlyCustomer, maxHourlyCustomer, avgCookiesPerSale) {
   this.name = name;
   this.minHourlyCustomer = minHourlyCustomer;
@@ -48,12 +55,12 @@ seattleCenter.calcDailyCookieTotal();
 capitolHill.calcDailyCookieTotal();
 alki.calcDailyCookieTotal();
 
-// console.table(storeLocations);
-// console.log(pike);
-// console.log(seaTac);
-// console.log(seattleCenter);
-// console.log(capitolHill);
-// console.log(alki);
+console.table(storeLocations);
+console.log(pike);
+console.log(seaTac);
+console.log(seattleCenter);
+console.log(capitolHill);
+console.log(alki);
 
 Bakery.prototype.render = function() {
   var trEl = document.createElement('tr');
@@ -122,9 +129,9 @@ function createFooter() {
   grandTotalEl.textContent = grandTotal;
   trEl.appendChild(grandTotalEl);
 
-  // tdEl = document.createElement('td');
-  // tdEl.textContent = '';
-  // trEl.appendChild(tdEl);
+  tdEl = document.createElement('td');
+  tdEl.textContent = '';
+  trEl.appendChild(tdEl);
   patTable.appendChild(trEl);
 
 }
@@ -139,44 +146,39 @@ for(var i = 0; i < hoursOpen.length; i++) {
 
 }
 
-// footerTotals[i].render();
-console.log(footerTotals);
-// }
+console.log(storeLocations);
 
-// function renderAll() {
-//   for (var i = 0; i < storeLocations; i++)
+function handleNewBakerySubmit (event) {
+  event.preventDefault();
+  console.log(handleNewBakerySubmit);
 
-//     storeLocations[i].render(i);
-// }
+  if (!event.target.bakery.value || !event.target.min.value || !event.target.max.value || !event.target.avg.value) {
+    return alert ('All fields are required, please resubmit. Danke!');
+  }
 
-makeHeaderRow();
-displaySales();
-// displayHourlySales();
-createFooter();
-// renderAll();
+  var newName = event.target.store.value;
+  var newMin = event.target.min.value;
+  var newMax = event.target.max.value;
+  var newAvg = event.target.avg.value;
+  var newBakery = new Bakery (newName, newMin, newMax, newAvg);
+  newBakery.render();
 
-// submit button event listener
-// addForm.addEventListener('submit', handleFormSubmit);
+  event.target.store.value = null;
+  event.target.min.value = null;
+  event.target.max.value = null;
+  event.target.avg.value = null;
 
-// function handleFormSubmit(event) {
-// event.preventDefault();
+  cookieForm.addEventListener('submit', handleNewBakerySubmit);
 
-// var newLocation = event.target.newLocation.value;
-// var minimumCustomer = parseInt(event.target.minimumCustomer.value);
-// var maximumCustomer = parseInt(event.target.maximumCustomer.value);
-// var avgCookiesPerCustomer = parseInt(event.target.avgCookiesPerCustomer.value);
+  makeHeaderRow();
+  displaySales();
+  createFooter();
 
-// }
+  updateForm.addEventListener('click', function() {
+    patTable.innerHTML = '';
 
-patTable.innerHTML = '';
-makeHeaderRow();
-displaySales();
-// displayHourlySales();
-createFooter();
-// renderAll();
-
-// clear form values
-// event.target.newLocation.value = null;
-// event.target.minimumCustomer.value = null;
-// event.target.maximumCustomer.value = null;
-// event.target.avgCookiesPerCustomer.value = null;
+    makeHeaderRow();
+    displaySales();
+    createFooter();
+  });
+}
