@@ -18,3 +18,38 @@ h1 {
 ul {
     padding: 2px;
 }
+
+.chinook-fish {
+    width: 250px;
+    margin: 30px;
+};
+
+.cutter-fish {
+    width: 250px;
+    margin: 60px;
+};
+
+.family-photo {
+    width: 250px;
+    margin: 90px;
+};
+
+.rainbow-fish {
+    width: 250px;
+    margin: 30px;
+};
+
+.frosted-cookie-fish {
+    width: 250px;
+    margin: 30px;
+};
+
+.salmon {
+    width: 250px;
+    margin: 30px;
+};
+
+.fish-shirt {
+    width: 250px;
+    margin: 30px;
+};
