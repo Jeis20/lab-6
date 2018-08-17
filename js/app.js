@@ -121,10 +121,6 @@ function createFooter() {
   var grandTotalEl = document.createElement('td');
   grandTotalEl.textContent = grandTotal;
   trEl.appendChild(grandTotalEl);
-
-  // tdEl = document.createElement('td');
-  // tdEl.textContent = '';
-  // trEl.appendChild(tdEl);
   patTable.appendChild(trEl);
 
 }
@@ -139,10 +135,6 @@ for(var i = 0; i < hoursOpen.length; i++) {
 
 }
 
-// footerTotals[i].render();
-console.log(footerTotals);
-// }
-
 // function renderAll() {
 //   for (var i = 0; i < storeLocations; i++)
 
@@ -151,7 +143,6 @@ console.log(footerTotals);
 
 makeHeaderRow();
 displaySales();
-// displayHourlySales();
 createFooter();
 // renderAll();
 
@@ -171,12 +162,11 @@ createFooter();
 patTable.innerHTML = '';
 makeHeaderRow();
 displaySales();
-// displayHourlySales();
 createFooter();
 // renderAll();
 
 // clear form values
-// event.target.newLocation.value = null;
-// event.target.minimumCustomer.value = null;
-// event.target.maximumCustomer.value = null;
-// event.target.avgCookiesPerCustomer.value = null;
+event.target.newLocation.value = null;
+event.target.minimumCustomer.value = null;
+event.target.maximumCustomer.value = null;
+event.target.avgCookiesPerCustomer.value = null;
